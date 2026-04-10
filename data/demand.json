@@ -1,0 +1,77 @@
+{
+  "plumber": {
+    "avgMonthlySearches": { "small": 800, "medium": 2200, "large": 5500 },
+    "afterHoursPercent": 38,
+    "avgTicket": 350
+  },
+  "electrician": {
+    "avgMonthlySearches": { "small": 600, "medium": 1800, "large": 4200 },
+    "afterHoursPercent": 32,
+    "avgTicket": 280
+  },
+  "hvac_contractor": {
+    "avgMonthlySearches": { "small": 700, "medium": 2000, "large": 4800 },
+    "afterHoursPercent": 42,
+    "avgTicket": 420
+  },
+  "locksmith": {
+    "avgMonthlySearches": { "small": 400, "medium": 1200, "large": 3000 },
+    "afterHoursPercent": 55,
+    "avgTicket": 180
+  },
+  "roofing_contractor": {
+    "avgMonthlySearches": { "small": 500, "medium": 1400, "large": 3500 },
+    "afterHoursPercent": 22,
+    "avgTicket": 8500
+  },
+  "moving_company": {
+    "avgMonthlySearches": { "small": 600, "medium": 1800, "large": 4500 },
+    "afterHoursPercent": 28,
+    "avgTicket": 1200
+  },
+  "painter": {
+    "avgMonthlySearches": { "small": 450, "medium": 1300, "large": 3200 },
+    "afterHoursPercent": 18,
+    "avgTicket": 2500
+  },
+  "landscaper": {
+    "avgMonthlySearches": { "small": 550, "medium": 1600, "large": 4000 },
+    "afterHoursPercent": 15,
+    "avgTicket": 450
+  },
+  "pest_control": {
+    "avgMonthlySearches": { "small": 500, "medium": 1500, "large": 3800 },
+    "afterHoursPercent": 35,
+    "avgTicket": 250
+  },
+  "cleaning_service": {
+    "avgMonthlySearches": { "small": 650, "medium": 1900, "large": 4600 },
+    "afterHoursPercent": 25,
+    "avgTicket": 180
+  },
+  "handyman": {
+    "avgMonthlySearches": { "small": 700, "medium": 2100, "large": 5000 },
+    "afterHoursPercent": 30,
+    "avgTicket": 220
+  },
+  "garage_door": {
+    "avgMonthlySearches": { "small": 350, "medium": 1000, "large": 2500 },
+    "afterHoursPercent": 45,
+    "avgTicket": 380
+  },
+  "tree_service": {
+    "avgMonthlySearches": { "small": 400, "medium": 1200, "large": 2800 },
+    "afterHoursPercent": 20,
+    "avgTicket": 650
+  },
+  "towing": {
+    "avgMonthlySearches": { "small": 600, "medium": 1800, "large": 4500 },
+    "afterHoursPercent": 60,
+    "avgTicket": 150
+  },
+  "appliance_repair": {
+    "avgMonthlySearches": { "small": 450, "medium": 1400, "large": 3400 },
+    "afterHoursPercent": 35,
+    "avgTicket": 220
+  }
+}
