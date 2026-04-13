@@ -1,136 +1,99 @@
 # Breezy Revenue Leak Report
 
-A lead magnet app for [Breezy](https://getbreezy.app) that generates personalized "Revenue Leak Reports" for local service businesses. Users enter their business name, and the app pulls real Google Places data and Reddit posts to show them exactly how much money they're losing by not being available 24/7.
+A lead magnet tool by [Breezy](https://getbreezy.app) that shows local service businesses exactly how much money they're losing by missing after-hours calls. Enter a business name, get a personalized revenue leak report backed by real data.
 
-## Features
+## How It Works
 
-- **Google Places Integration**: Real business data including hours, ratings, and reviews
-- **Competitor Analysis**: Compare against nearby competitors
-- **Reddit Lead Discovery**: Find people asking for services in their area
-- **Revenue Calculator**: Calculate potential lost revenue with adjustable parameters
-- **Immersive 3D Visuals**: Three.js powered animations throughout
-- **Responsive Design**: Works beautifully on desktop and mobile
+1. **Search** - Type a business name. The app pulls real data from Google Places (hours, ratings, reviews, location).
+2. **Analyze** - The engine calculates after-hours search volume for the business category and city size, then estimates lost revenue using industry conversion rates.
+3. **Compare** - See how the business stacks up against nearby competitors on ratings, reviews, and availability.
+4. **Discover** - Surface Reddit posts from people actively searching for that service in the area.
 
 ## Tech Stack
 
-- **Framework**: Next.js 14+ (App Router)
-- **Styling**: Tailwind CSS
-- **3D/Visuals**: Three.js via @react-three/fiber + @react-three/drei
-- **Animations**: Framer Motion
-- **APIs**: Google Places API, PullPush Reddit API
+| Layer | Tech |
+|-------|------|
+| Framework | Next.js 16 (App Router) |
+| Language | TypeScript |
+| Styling | Tailwind CSS 4 |
+| 3D Visuals | Three.js via React Three Fiber + Drei |
+| Animations | Framer Motion |
+| Charts | Recharts |
+| APIs | Google Places API (New), PullPush Reddit API |
 
-## Getting Started
+## Quick Start
 
-### Prerequisites
-
-- Node.js 18+
-- Google Places API key (from Google Cloud Console)
-
-### Setup
-
-1. Clone the repository:
 ```bash
-git clone <repository-url>
-cd breezy-revenue-leak
-```
-
-2. Install dependencies:
-```bash
+# 1. Install dependencies
 npm install
-```
 
-3. Create a `.env.local` file:
-```bash
+# 2. Set up environment
 cp .env.example .env.local
-```
+# Add your Google Places API key to .env.local:
+#   GOOGLE_PLACES_API_KEY=your_key_here
 
-4. Add your Google Places API key to `.env.local`:
-```
-GOOGLE_PLACES_API_KEY=your_api_key_here
-```
-
-5. Enable the **Places API (New)** in your Google Cloud Console project.
-
-6. Run the development server:
-```bash
+# 3. Run
 npm run dev
 ```
 
-7. Open [http://localhost:3000](http://localhost:3000) in your browser.
+Open [http://localhost:3000](http://localhost:3000).
+
+**Prerequisites:** Node.js 18+ and a [Google Places API](https://console.cloud.google.com/) key with the Places API (New) enabled.
 
 ## Project Structure
 
 ```
-/app
-  /page.tsx                    # Landing page with search
-  /report/[placeId]/page.tsx   # Report page
-  /api
-    /places/search/route.ts    # Google Places text search
-    /places/details/route.ts   # Google Places details
-    /places/competitors/route.ts # Nearby competitors
-    /reddit/search/route.ts    # Reddit post search
+app/
+  page.tsx                         # Landing page with business search
+  report/[placeId]/page.tsx        # Generated revenue leak report
+  api/
+    places/search/route.ts         # Business name autocomplete
+    places/details/route.ts        # Full business details
+    places/competitors/route.ts    # Nearby competitor lookup
+    places/intelligence/route.ts   # SEO & delivery presence checks
+    reddit/search/route.ts         # Reddit post discovery
 
-/components
-  /three                       # Three.js components
-    /CityScene.tsx             # Hero background
-    /PhoneRinging.tsx          # Loading animation
-    /MoneyRain.tsx             # Revenue section background
-  /ui                          # UI components
-    /SearchInput.tsx           # Google Places autocomplete
-    /BusinessCard.tsx          # Business snapshot
-    /HoursGrid.tsx             # Weekly hours display
-    /RevenueCounter.tsx        # Animated counter
-    /CompetitorTable.tsx       # Competitor comparison
-    /RedditPostList.tsx        # Reddit posts
-    /CTASection.tsx            # Call to action
+components/
+  ui/        # React UI (search, business card, revenue breakdown, CTA, etc.)
+  three/     # Three.js scenes (city skyline, money rain, competitor bars, etc.)
 
-/data
-  /demand.json                 # Trade-specific demand data
-  /subreddits.json             # City to subreddit mapping
-  /city-sizes.json             # City population buckets
+lib/
+  calculate.ts            # Revenue leak formula
+  google-places.ts        # Google API helpers
+  reddit.ts               # Reddit API helpers
+  categories.ts           # 60+ business category definitions
+  types.ts                # Shared TypeScript types
+  utils.ts                # General utilities
 
-/lib
-  /types.ts                    # TypeScript types
-  /utils.ts                    # Utility functions
-  /calculate.ts                # Revenue calculation logic
-  /google-places.ts            # Google API helpers
-  /reddit.ts                   # Reddit API helpers
+data/
+  demand.json             # Search volume by trade and city size
+  subreddits.json         # City-to-subreddit mapping
+  city-sizes.json         # City population buckets
 ```
 
-## Revenue Calculation
-
-The revenue leak is calculated using:
+## Revenue Leak Formula
 
 ```
-monthlyRevenueLeak = afterHoursSearches × captureRate × avgTicket
+Monthly Revenue Leak = After-Hours Searches x Capture Rate x Avg Ticket
 ```
 
-Where:
-- `afterHoursSearches` = monthly searches × after-hours percentage
-- `captureRate` = 15% (industry average)
-- `avgTicket` = trade-specific average (user adjustable)
+- **After-Hours Searches** = monthly search volume for the category/city x after-hours percentage
+- **Capture Rate** = 15% (industry average search-to-call conversion)
+- **Avg Ticket** = category-specific default, adjustable via slider
 
 ## Deployment
 
-Deploy to Vercel:
+Deploy to Vercel (or any platform supporting Next.js):
 
-1. Push your code to GitHub
-2. Import the project in Vercel
-3. Add your `GOOGLE_PLACES_API_KEY` environment variable
-4. Deploy
-
-Remember to restrict your API key to your Vercel domain in Google Cloud Console.
-
-## Environment Variables
-
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `GOOGLE_PLACES_API_KEY` | Google Places API key | Yes |
+1. Push to GitHub
+2. Import in Vercel
+3. Set `GOOGLE_PLACES_API_KEY` as an environment variable
+4. Restrict the API key to your production domain in Google Cloud Console
 
 ## License
 
 MIT
 
-## Credits
+---
 
 Built for [Breezy](https://getbreezy.app) - AI Front Desk for Solo Service Professionals
